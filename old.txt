@@ -1,0 +1,52 @@
+from pymongo import MongoClient
+client = MongoClient()
+# MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True) == success
+print(client)
+""" 1 """
+db = client['TestPython']
+print(db.name)  # TestPython
+""" 2 """
+collection = db['publication']
+print(collection.name)  # publication
+""" 3 """
+q3 = collection.insert_one({
+    "type": "livre",
+    "titre": "Voyage autour du monde",
+    "annee": 1995,
+    "realisateur": ["Louis-Antoine"],
+    "source": "Bablio"
+})
+""" 4 """
+q4 = collection.insert_many([
+    {
+        "type": "article",
+        "titre": "Voyage autour du monde",
+        "annee": 1995,
+        "realisateur": ["Louis-Antoine"],
+        "source": "Bablio"
+    },
+    {
+        "type": "article",
+        "titre": "Voyage autour du monde",
+        "annee": 1995,
+        "realisateur": ["Louis-Antoine"],
+        "source": "Bablio"
+    }
+])
+""" 5 """
+q5 = collection.insert_many([
+    {
+        "type": "audiovisuel ",
+        "titre": "Voyage à USA",
+        "annee": 1995,
+        "realisateur": ["Louis-Antoine"],
+        "source": "Bablio"
+    },
+    {
+        "type": "audiovisuel ",
+        "titre": "Voyage à USA",
+        "annee": 1995,
+        "realisateur": ["Louis-Antoine"],
+        "source": "Bablio"
+    }
+])
